@@ -1,0 +1,41 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/css/user_stories.css' %}">
+
+<div class="stories-wrapper">
+  <!-- Left: Write your own story -->
+  <div class="stories-left">
+    <h2 class="section-title">✍️ Write Your Story</h2>
+    <form class="story-form">
+      <textarea placeholder="Share your thoughts..." rows="6"></textarea>
+      <input type="file" class="file-input">
+      <button type="submit" class="btn">Post Story</button>
+    </form>
+  </div>
+
+  <!-- Right: Read others' stories -->
+  <div class="stories-right">
+    <h2 class="section-title">📖 Stories from Others</h2>
+    <div class="stories-grid">
+      <div class="story-card">
+        <img src="https://via.placeholder.com/400x250" alt="Story Image">
+        <div class="story-content">
+          <h3>User Story Title</h3>
+          <p>A short description of the story goes here. Keep it engaging and concise.</p>
+          <a href="#" class="btn">View Story</a>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <img src="https://via.placeholder.com/400x250" alt="Story Image">
+        <div class="story-content">
+          <h3>Another Story</h3>
+          <p>This is another example story. You can dynamically load these from your database.</p>
+          <a href="#" class="btn">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

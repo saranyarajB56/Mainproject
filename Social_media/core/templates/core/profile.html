@@ -1,0 +1,102 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/css/profile.css' %}">
+
+<div class="profile-container">
+  <div class="profile-layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="left-sidebar">
+      <header class="profile-header">
+        {% if profile.cover_image %}
+          <img src="{{ profile.cover_image.url }}" class="cover-img" alt="Cover Image">
+        {% endif %}
+      </header>
+
+      <section class="profile-card">
+        {% if profile.profile_image %}
+          <img src="{{ profile.profile_image.url }}" class="profile-img" alt="{{ profile.user.username }}'s Profile Picture">
+        {% else %}
+          <img src="{% static 'core/images/default-profile.jpg' %}" class="profile-img" alt="Default Profile Picture">
+        {% endif %}
+
+        <h2 class="profile-name">{{ profile.user.username }}</h2>
+        {% if profile.status %}
+          <p class="status">{{ profile.status }}</p>
+        {% endif %}
+        
+        <!-- Followers count -->
+        <a href="{% url 'followers_page' profile.user.username %}" class="followers-btn">Followers </a>
+
+            
+        <nav class="social-links">
+          <a href="https://www.google.com/" target="_blank" rel="noopener"><ion-icon name="globe-outline"></ion-icon></a>
+          <a href="https://x.com/login" target="_blank" rel="noopener"><ion-icon name="logo-twitter"></ion-icon></a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener"><ion-icon name="logo-linkedin"></ion-icon></a>
+          <a href="https://github.com/login" target="_blank" rel="noopener"><ion-icon name="logo-github"></ion-icon></a>
+        </nav>
+      </section>
+
+      <section class="section profile-details">
+        <h3>Profile Details</h3>
+        {% if profile.occupation %}
+          <p><strong>Occupation:</strong> {{ profile.occupation }}</p>
+        {% endif %}
+        {% if profile.location %}
+          <p><strong>Location:</strong> {{ profile.location }}</p>
+        {% endif %}
+        {% if profile.website %}
+          <p><strong>Website:</strong> <a href="{{ profile.website }}" target="_blank">{{ profile.website }}</a></p>
+        {% endif %}
+      </section>
+
+      <section class="section edit-profile">
+        <h3>Edit Profile</h3>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Save Changes</button>
+        </form>
+      </section>
+    </aside>
+
+    <!-- RIGHT SIDEBAR -->
+    <main class="right-sidebar">
+      <section class="section user-posts">
+        <h3>{{ profile.user.username }}'s Posts</h3>
+        {% if posts %}
+          <ul class="posts-list">
+            {% for post in posts %}
+              <li class="post-item">
+              <!-- post----images/videos -->
+                {% if post.image %}
+                <img src="{{ post.image.url }}" alt="Post image">
+                {% endif %}
+                {% if post.video %}
+                <video controls src="{{ post.video.url }}"></video>
+                {% endif %}
+                <h4 class="post-title">{{ post.title }}</h4>
+                <p class="post-content">{{ post.content }}</p>
+                <small class="post-date">Posted on {{ post.created_at|date:"M d, Y" }}</small>
+                <!-- delete button -->
+                {% if post.author == request.user %}
+                <form method="post" action="{% url 'delete_post' post.id %}" class="delete-form" style="margin-top:10px;">
+                   {% csrf_token %}
+                   <button type="submit" class="delete-btn">Delete</button>
+                 </form>
+                {% endif %}
+                <!-- -------- -->
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No posts yet.</p>
+        {% endif %}
+      </section>
+    </main>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Profile for Guest{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/css/profile_details_guest.css' %}">
+
+<div class="profile-container">
+
+  <!-- Left Sidebar -->
+  <div class="left-sidebar">
+
+    <!-- Cover Header -->
+    <header class="profile-header">
+      {% if profile.cover_image %}
+        <img src="{{ profile.cover_image.url }}" class="cover-img" alt="Cover Image">
+      {% else %}
+        <div class="cover-placeholder">No Cover Image</div>
+      {% endif %}
+    </header>
+
+    <!-- Profile Card -->
+    <section class="profile-card shadow-card">
+      <div class="profile-img-wrapper">
+        {% if profile.profile_image %}
+          <img src="{{ profile.profile_image.url }}" class="profile-img" alt="{{ profile.user.username }}'s Profile Picture">
+        {% else %}
+          <img src="{% static 'core/images/default-profile.jpg' %}" class="profile-img" alt="Default Profile Picture">
+        {% endif %}
+      </div>
+
+      <h2 class="profile-name">{{ profile.user.username }}</h2>
+
+      {% if profile.status %}
+        <p class="status">“{{ profile.status }}”</p>
+      {% endif %} 
+
+      <!-- follow/unfollow -->
+      <form action="{% url 'follow_user' profile.user.username %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="{% if is_following %}unfollow-btn{% else %}follow-btn{% endif %}">
+          {% if is_following %}Unfollow{% else %}Follow{% endif %}
+        </button>
+      </form>
+      <p class="followers-count"><strong>Followers:</strong> {{ followers_count }}</p> 
+    </section>
+
+    <!-- Profile Details -->
+    <section class="section profile-details shadow-card">
+      <h3>Profile Details</h3>
+      <ul class="details-list">
+        {% if profile.occupation %}
+          <li><strong>Occupation:</strong> {{ profile.occupation }}</li>
+        {% endif %}
+        {% if profile.location %}
+          <li><strong>Location:</strong> {{ profile.location }}</li>
+        {% endif %}
+        {% if profile.website %}
+          <li><strong>Website:</strong> 
+            <a href="{{ profile.website }}" target="_blank" rel="noopener">{{ profile.website }}</a>
+          </li>
+        {% endif %}
+      </ul>
+    </section>
+
+  </div><!-- end left-sidebar -->
+
+  <!-- Right Sidebar -->
+  <div class="right-sidebar">
+    <!-- User Posts -->
+    <section class="section user-posts shadow-card">
+      <h3>{{ profile.user.username }}'s Posts</h3>
+      <p class="post-count">Total posts: {{ posts.count }}</p>
+
+      {% if posts %}
+        <ul class="posts-list">
+          {% for post in posts %}
+            <li class="post-item">
+              {% if post.image %}
+                <img src="{{ post.image.url }}" alt="Post Image" class="post-img">
+              {% endif %}
+              {% if post.video %}
+                 <video class="post-video" controls>
+                    <source src="{{ post.video.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                 </video>
+              {% endif %}
+              <div class="post-content-wrapper">
+                <h4 class="post-title">{{ post.title }}</h4>
+                <p class="post-content">{{ post.content }}</p>
+                <small class="post-date">📅 {{ post.created_at|date:"M d, Y" }}</small>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="no-posts">No posts yet.</p>
+      {% endif %}
+    </section>
+  </div><!-- end right-sidebar -->
+
+</div><!-- end profile-container -->
+{% endblock %}

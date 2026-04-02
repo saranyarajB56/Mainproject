@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Messages{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/css/messages.css' %}">
+
+<div class="messages-container two-column">
+
+    <!-- Left Sidebar: Inbox -->
+    <div class="left-sidebar">
+        <!-- Alert messages -->
+        {% if messages %}
+        <div class="alert-container">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <h2>Inbox</h2>
+        <ul class="inbox-list">
+            {% for msg in inbox %}
+                <li class="message-item">
+                    <a href="{% url 'conversation' msg.sender.id %}">
+                        <div class="message-header">
+                            <strong>{{ msg.sender.username }}</strong>
+                            <span class="timestamp">{{ msg.created_at }}</span>
+                        </div>
+                        <p class="message-text">{{ msg.text|truncatewords:10 }}</p>
+                    </a>
+                </li>
+            {% empty %}
+                <li class="no-messages">No messages yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Right Sidebar: Send Message -->
+    <div class="right-sidebar">
+        <h3>Send a Message</h3>
+        <form method="post" class="message-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Conversation with {{ other_user.username }}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/css/conversation.css' %}">
+
+<div class="conversation-container">
+    <h2>Conversation with {{ other_user.username }}</h2>
+
+    <ul class="conversation-list">
+        {% for msg in conversation %}
+            <li class="conversation-item {% if msg.sender == request.user %}sent{% else %}received{% endif %}">
+                <div class="message-header">
+                    <strong>{{ msg.sender.username }}</strong>
+                    <span class="timestamp">{{ msg.created_at|date:"M d, Y H:i" }}</span>
+                </div>
+                <p class="message-text">{{ msg.text }}</p>
+            </li>
+        {% empty %}
+            <li class="no-messages">No messages yet.</li>
+        {% endfor %}
+    </ul>
+
+    <form method="post" class="message-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+</div>
+{% endblock %}

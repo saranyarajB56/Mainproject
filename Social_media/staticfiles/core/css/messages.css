@@ -1,0 +1,137 @@
+/* Container */
+.messages-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Headings */
+h2, h3 {
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* Inbox list */
+.inbox-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+.message-item {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.message-header strong {
+    color: #007bff;
+    font-size: 1.05em;
+}
+
+.timestamp {
+    color: #777;
+    font-size: 0.85em;
+}
+
+.message-text {
+    margin: 0;
+    color: #444;
+}
+
+/* Empty inbox */
+.no-messages {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
+/* Form styling */
+.message-form {
+    margin-top: 20px;
+}
+
+.message-form label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.message-form input[type="text"],
+.message-form textarea,
+.message-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    font-size: 1em;
+}
+
+.message-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.message-form button {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.message-form button:hover {
+    background: #218838;
+}
+
+/* Error messages */
+.errorlist {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin: -5px 0 10px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}

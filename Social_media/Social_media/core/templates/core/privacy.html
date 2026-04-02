@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Privacy Policy{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/css/privacy.css' %}">
+
+<div class="privacy-container">
+  <h2>Privacy Policy</h2>
+  <p>We value your privacy and are committed to protecting your personal information. This page explains how we collect, use, and safeguard your data when you use our social media app.</p>
+
+  <h3>Information We Collect</h3>
+  <ul>
+    <li>Account details such as username and email.</li>
+    <li>Profile information you choose to share (bio, images, etc.).</li>
+    <li>Activity data like posts, comments, and interactions.</li>
+  </ul>
+
+  <h3>How We Use Your Information</h3>
+  <ul>
+    <li>To provide and improve our services.</li>
+    <li>To personalize your experience on the platform.</li>
+    <li>To ensure safety and prevent misuse.</li>
+  </ul>
+
+  <h3>Data Protection</h3>
+  <p>We implement security measures to protect your data from unauthorized access, alteration, or disclosure. Your information is stored securely and only used for the purposes outlined above.</p>
+
+  <h3>Your Rights</h3>
+  <p>You have the right to access, update, or delete your personal information. Please contact us if you wish to exercise these rights.</p>
+
+  <h3>Updates to This Policy</h3>
+  <p>We may update this privacy policy from time to time. Any changes will be posted here with the updated date.</p>
+
+  <p><strong>Last Updated:</strong> March 2026</p>
+</div>
+{% endblock %}

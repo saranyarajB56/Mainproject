@@ -1,0 +1,27 @@
+.privacy-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.privacy-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4CAF50;
+}
+
+.privacy-container h3 {
+  margin-top: 20px;
+  color: #333;
+}
+
+.privacy-container ul {
+  margin: 10px 0 20px 20px;
+}
+
+.privacy-container p {
+  margin-bottom: 15px;
+}

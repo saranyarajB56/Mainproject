@@ -1,0 +1,48 @@
+.followers-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.followers-container h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.followers-count {
+  font-size: 15px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.followers-list {
+  list-style: none;
+  padding: 0;
+}
+
+.followers-list li {
+  margin: 10px 0;
+}
+
+.follower-link {
+  display: inline-block;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.follower-link:hover {
+  background: linear-gradient(135deg, #42A5F5, #1565C0);
+  transform: scale(1.05);
+}

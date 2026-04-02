@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Social Media{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <script src="{% static 'core/js/script.js' %}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <!-- Responsive Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="{% static 'core/images/logo.png' %}" alt="Logo" class="brand-logo">
+            Nestly Network
+        </div>
+
+        <!-- <button class="nav-toggle" id="nav-toggle">
+            <ion-icon name="menu-outline"></ion-icon>
+        </button> -->
+
+        <div class="nav-links" id="nav-links">
+            {% if user.is_authenticated %}
+                <a href="{% url 'feed' %}">Feed</a>
+                <a href="{% url 'profile_detail' user.username %}">Profile</a>
+                <a href="{% url 'user_messages' %}">Messages</a>
+                <!-- <a href="{% url 'user_stories' %}">Stories</a> -->
+                <a href="{% url 'user_settings' %}">Settings</a>
+                <a href="{% url 'logout' %}">Logout</a>
+                <!-- User Search (Top Right) -->
+                <form action="{% url 'user_search' %}" method="get" class="nav-search">
+                    <input type="text" name="q" placeholder="Search users..." aria-label="Search users">
+                    <button type="submit">
+                    <ion-icon name="search-outline"></ion-icon>
+                    </button>
+                </form>
+                <!-- Username Display (Top Right) -->
+        <div class="nav-username">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            {{ user.username }}
+        </div>
+
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Signup</a>
+            {% endif %}
+        </div>
+
+        
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+        <p>&copy; 2026 Nestly Network | <i>“Your digital nest of connections”.</i> | <a href="{% url 'about' %}">About</a> | <a href="{% url 'contact' %}">Contact</a> |
+             <a href="{% url 'privacy' %}">Privacy</a></p>
+    </footer>
+</body>
+</html>

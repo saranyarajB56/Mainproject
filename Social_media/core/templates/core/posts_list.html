@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posts List</title>
+  <link rel="stylesheet" href="{% static 'core/css/admin.css' %}">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="sidebar">
+    <img src="{% static 'core/images/logo.png' %}" alt="Logo" class="brand-logo">
+    <h2>Admin Panel</h2>
+    <ul>
+      <li><a href="{% url 'admin_dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      <li><a href="{% url 'users_list' %}"><i class="fas fa-users"></i> Users</a></li>
+      <li><a href="{% url 'posts_list' %}" class="active"><i class="fas fa-file-alt"></i> Posts</a></li>
+      <li><a href="{% url 'likes_list' %}"><i class="fas fa-heart"></i> Likes</a></li>
+      <li><a href="{% url 'comments_list' %}"><i class="fas fa-comments"></i> Comments</a></li>
+      <li><a href="{% url 'messages_list' %}"><i class="fas fa-envelope"></i> Messages</a></li>
+      <li><a href="{% url 'followers_list' %}"><i class="fas fa-user-friends"></i> Followers</a></li>
+      <li><a href="{% url 'admin_settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
+      <li><a href="#" class="logout" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <header>
+      <h1>Posts List</h1>
+      <div class="profile">
+        <img src="{% static 'core/images/admin.jpg' %}" alt="Admin img">
+        <span>Admin</span>
+      </div>
+    </header>
+
+    <section class="table-section">
+      <h2>All Posts</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Content</th>
+            <th>Email</th>
+            <th>Created Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in posts %}
+          <tr>
+            <td>{{ post.author}}</td>
+            <td>{{ post.content|truncatechars:80 }}</td>
+            <td>{{ post.author.email }}</td>
+            <td>{{ post.created_at|date:"d M Y H:i" }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="3">No posts found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <script>
+  function confirmLogout() {
+    if (confirm("Are you sure you want to logout?")) {
+      window.location.href = "{% url 'logout' %}";
+    }
+  }
+  </script>
+</body>
+</html>

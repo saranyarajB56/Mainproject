@@ -1,0 +1,41 @@
+
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Settings{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/css/settings.css' %}">
+
+<div class="settings-container">
+    <h1>Account Settings</h1>
+
+    <!-- Messages -->
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <!-- Username Form -->
+    <section class="settings-section">
+        <h2>Update Username</h2>
+        <form method="post" class="settings-form">
+            {% csrf_token %}
+            {{ username_form.as_p }}
+            <button type="submit" name="username_submit">Update Username</button>
+        </form>
+    </section>
+
+    <!-- Password Form -->
+    <section class="settings-section">
+        <h2>Change Password</h2>
+        <form method="post" class="settings-form">
+            {% csrf_token %}
+            {{ password_form.as_p }}
+            <button type="submit" name="password_submit">Change Password</button>
+        </form>
+    </section>
+
+</div>
+{% endblock %}

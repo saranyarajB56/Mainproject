@@ -1,0 +1,136 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background: #f9f9f9;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 0.6rem 1.2rem;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Brand */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #1877f2; /* Facebook blue */
+}
+
+.brand-logo {
+    height: 36px;
+    margin-right: 8px;
+}
+
+/* Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.nav-links a:hover {
+    background: #f0f2f5;
+}
+
+/* Search Bar */
+.nav-search {
+    display: flex;
+    align-items: center;
+    background: #f0f2f5;
+    border-radius: 20px;
+    padding: 4px 10px;
+    margin-left: 1rem;
+}
+
+.nav-search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 6px;
+    width: 160px;
+}
+
+.nav-search button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #555;
+}
+
+/* Username Display */
+.nav-username {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.nav-username ion-icon {
+    margin-right: 6px;
+    font-size: 1.4rem;
+    color: #1877f2;
+}
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 1rem;
+  background: #ffffff;
+  border-top: 1px solid #eaeaea;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.footer a {
+  color: #0077ff;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .nav-search input {
+        width: 100px;
+    }
+}

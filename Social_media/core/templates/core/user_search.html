@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}User Search{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/css/user_search.css' %}">
+<div class="container">
+
+<div class="search-results">
+  <h2>Search Results for "{{ query }}"</h2>
+  {% if results %}
+    <ul>
+      {% for user in results %}
+        {% with user.profile as profile %}
+        <li class="search-item">
+         
+          <!-- Profile Image -->
+          {% if profile.profile_image %}
+            <img src="{{ profile.profile_image.url }}" alt="Profile" class="profile-thumb">
+          {% else %}
+            <img src="{% static 'core/images/default-profile.jpg' %}" alt="Default Profile" class="profile-thumb">
+          {% endif %}
+
+          <!-- Username -->
+          <a href="{% url 'profile_details_guest' user.username %}" class="username-link">
+            {{ user.username }}
+          </a>
+        </li>
+        {% endwith %}
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No users found.</p>
+  {% endif %}
+</div>
+</div>
+{% endblock %}

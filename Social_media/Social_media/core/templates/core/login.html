@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/css/login.css' %}">
+
+<div class="container">
+    <!-- Left Sidebar -->
+    <div class="left-sidebar">
+        <img src="{% static 'core/images/logoo.png' %}" alt="Login img">
+        <!-- <p>“Your digital nest of connections”.</p> -->
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="right-sidebar">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label for="id_username">Username:</label>
+                <input type="text" name="username" id="id_username" required>
+            </p>
+            <p>
+                <label for="id_password">Password:</label>
+                <input type="password" name="password" id="id_password" required>
+            </p>
+            <button type="submit">Login</button>
+
+            <!-- Forgot Password Link -->
+            <p class="text-center mt-3">
+                Forgot your password?
+                <a href="{% url 'forgotpassword' %}" class="link-custom">Reset Here</a>
+            </p>
+
+            <!-- Sign Up Link -->
+            <p class="text-center mt-3">
+                Don’t have an account?
+                <a href="{% url 'signup' %}" class="link-custom">Sign Up</a>
+            </p>
+        </form>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
